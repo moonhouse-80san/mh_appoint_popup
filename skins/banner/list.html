@@ -1,0 +1,125 @@
+<!--@if($lang_type=='ko')-->
+	{@
+		$lang->popupclose = '팝업종료';
+		$lang->forday = '일간 닫기';
+	}
+<!--@else-->
+	{@
+		$lang->popupclose = 'PopUp Close';
+		$lang->forday = 'Close for day';
+	}
+<!--@end-->
+
+{@
+$wi = $widget_info; 
+$no = $wi->popup_no; 
+}
+
+{@ if($_COOKIE['PopUp_Close'.$no] == $no) return;}
+
+<load target="banner.css" />
+
+<script>
+	function set_PopUpCookie_{$no}() {
+		var expire = new Date();
+		expire.setDate(expire.getDate()+{$wi->closeday});
+		xSetCookie('PopUp_Close{$no}', '{$no}', expire);
+		xHide('PopUp {$no}');
+	}
+
+	var x_styleLeft, y_styleTop, x_accept, y_accept;
+
+	$(document).ready(function(){ 
+		$('#pop-ups{$no}').mousedown(function(event) {
+				x_styleLeft = event.clientX - $("#pop-ups{$no}").offset().left;
+				y_styleTop = event.clientY - $("#pop-ups{$no}").offset().top;
+				$(document).mousemove(function(event){ 
+				x_accept = event.clientX - x_styleLeft;
+				y_accept = event.clientY - y_styleTop;
+				$("#pop-ups{$no}").css("left",x_accept+"px"); 
+				$("#pop-ups{$no}").css("top",y_accept+"px"); 
+				});
+			});
+		}).mouseup(function(){
+			$(this).off('mousemove');
+	});
+
+	$('#pop-ups{$no}').css('cursor', 'move')
+</script>
+
+<style>
+	#pop-ups{$no} { position:{$wi->popup_location}; margin-left:-{$wi->popup_width/2}px; top:{$wi->board_top}%; left:{$wi->board_left}%; z-index:99 }
+	.pop_banners{$no} { position:absolute; overflow:hidden; z-index:99; padding:0px; width:{$wi->popup_width}px; border:{$wi->board_line} {$wi->board_line_width}px {$wi->aboard_line_color}; <!--@if($wi->display_round == 'Y')-->-webkit-border-radius:20px;-moz-border-radius:20px; border-radius:20px<!--@else--><!--@end--><!--@if($wi->display_shadow == 'Y')-->background:transparent; -webkit-box-shadow:0 0 10px #000; box-shadow:0 0 20px #000<!--@else--><!--@end--> }
+	.pop_banners{$no} .ap_box { padding:0px; background-color:{$wi->background_color}; <!--@if($wi->display_round == 'Y')-->-webkit-border-radius:10px;-moz-border-radius:10px; border-radius:10px<!--@else--><!--@end--> }
+	.pop_banners{$no} .ap_box .box_top_title { padding:5px; overflow:hidden; background-color:{$wi->background_color}; border-bottom:1px solid {$wi->aboard_line_color}; cursor:move }
+	.pop_banners{$no} .ap_box .box_top { border-top:0px solid {$wi->aboard_line_color}; border-bottom:0px solid {$wi->aboard_line_color} }
+	.pop_banners{$no} .box_top_title { color:{$wi->title_font_color} }
+	.pop_banners{$no} .ap_box .ap_tclose { top:{$wi->top_close_t}px; right:{$wi->top_close_r}px; }
+	.pop_banners{$no} .ap_box .box_top .content_view { overflow-y:auto; height:{$wi->popup_height}px }
+	.pop_banners{$no} .p_table { <!--@if($wi->aclose_location == 're')-->margin-top:{$wi->close_b}px; background:{$wi->close_bcolor}; border-radius:0px;<!--@else-->position:absolute; bottom:{$wi->close_b+17}px;<!--@end--> cursor:move; z-index:100; }
+	.pop_banners{$no} .p_table .bottom_left a { margin-left:{$wi->close_left}px; }
+	.pop_banners{$no} .p_table .bottom_right { right:{$wi->close_left/2}px; }
+	.pop_banners{$no} .p_table .bottom_right a { margin-right:{$wi->close_left/2}px; }
+	.pop_banners{$no} .p_table a { border:0px solid {$wi->close_color}; background:{$wi->close_bcolor}; color:{$wi->close_color} }
+	.pop_banners{$no} .p_table .bottom_left .d { border:0px solid {$wi->close_color}; background:{$wi->close_bcolor}; color:{$wi->close_color}; margin-left:10px; padding:3px 10px}
+
+	@media all and (max-width: 479px) {
+	#pop-ups{$no} { position:{$wi->popup_location}; margin-left:-160px; top:1%; left:50%; z-index:99 }
+	.pop_banners{$no} { width:320px; border:{$wi->board_line} {$wi->board_line_width}px {$wi->aboard_line_color} }
+	.pop_banners{$no} .ap_box .content_view { overflow-y:auto; max-height:400px; padding:0px }
+	.pop_banners{$no} .p_table { margin-top:-15px; padding:0; padding:0; cursor:move; z-index:100 }
+	}
+</style>
+
+<div id="pop-ups{$no}">
+	<div class="logo" id="PopUp {$no}">
+		<!--@foreach($wi->document_list as $oDocument)-->
+
+			<!--@if($wi->close_day)-->
+					{@
+						$year = $wi->close_y;
+						$month = $wi->close_m;
+						$day = $wi->close_day;
+						$now = date("Y.m.d");
+						$this_day = date_create("$year-$month-$day");
+						$date = $this_day->format("Y.m.d")
+					}
+				<!--@else-->
+					{@
+						if(!$wi->ename) $wi->ename = end;
+						$now = date("Y-m-d");
+						$date = $oDocument->getExtraEidValueHTML($wi->ename);
+					}
+			<!--@end-->
+
+			<!--@if($wi->display_popup == '')-->
+				<!--@if($wi->group_view == 'Y')-->
+						<!-- 그룹적용 -->
+						<!--@if($is_logged)-->
+							<!--@if($wi->permission)-->
+								<!-- 종료날짜적용 -->
+								<!--@if(!$date || $now < $date)-->
+										<include target="popup.html" />
+									<!--@elseif($now >= $date)-->
+								<!--@end-->
+							<!--@end-->
+						<!--@end-->
+					<!--@else-->
+						<!-- 그룹적용안함 -->
+						<!-- 포인트 / 레벨적용 -->
+						{@ $oPointModel = &getModel('point'); $point = $oPointModel->getPoint($logged_info->member_srl); $oModuleModel = &getModel('module');  $config = $oModuleModel->getModuleConfig('point'); $level = $oPointModel->getLevel($point, $config->level_step); }
+						<!--@if($point < "{$wi->point_p}" || $level < "{$wi->level_p}" )-->
+							<!--@else-->
+							<!-- 종료날짜적용 -->
+							<!--@if(!$date || $now < $date)-->
+									<include target="popup.html" />
+								<!--@elseif($now >= $date)-->
+							<!--@end-->
+						<!--@end-->
+				<!--@end-->
+			<!--@end-->
+
+		<!--@end-->
+	</div>
+</div>
+

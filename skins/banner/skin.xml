@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<skin version="0.2">
+	<title xml:lang="ko">MH팝업 지정 게시물 배너스킨</title>
+	<description xml:lang="ko">팝업안의 내용이 게시물형태 그대로 출력</description>
+	<version>1.1</version>
+	<date>2019-03-20</date>
+
+	<author email_address="mbg1346@naver.com" link="https://moonhouse.co.kr">
+		<name xml:lang="ko">문하우스</name>
+	</author>
+
+</skin>

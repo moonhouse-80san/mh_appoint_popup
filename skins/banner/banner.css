@@ -1,0 +1,17 @@
+ol, ul, li { list-style:none }
+a, a:hover, a:active, a:focus { text-decoration:none }
+
+.logo { filter:revealTrans(transition=23,duration=0.5) blendTrans(duration=0.5); }
+
+.ap_box .ap_title { line-height:20px; padding:5px 0 5px 10px; font-size:1.5em; display:block; }
+.ap_box .ap_tclose { position:absolute; top:15px; right:40px; z-index:101;}
+
+.ap_box .bottom_left { box-sizing:border-box; display:inline-block; margin-top:7px; z-index:100; }
+.ap_box .bottom_right { box-sizing:border-box; display:inline-block; position:absolute; right:0; top:7px; z-index:100; }
+.ap_box .bottom_right a input { vertical-align:-3px; }
+
+.p_table { position:relative; width:100%; display:table; height:32px; }
+.p_table a { padding:4px 10px; border-radius:5px; z-index:100; }
+
+.ap_box .sub { padding:5px; white-space:nowrap; text-align:center;}
+.ap_box .sub a { font-size:14px; color:#888; font-weight:bold; }

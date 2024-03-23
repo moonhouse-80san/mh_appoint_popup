@@ -1,0 +1,423 @@
+<?xml version="1.0" encoding="utf-8"?>
+<widget version="0.2">
+	<title xml:lang="ko">MH Appoint Popup Pro</title>
+	<description xml:lang="ko">
+		지정한 게시물을 팝업창 출력하는 위젯입니다.
+	</description>
+	<version>1.4</version>
+	<date>2022-04-19</date>
+
+	<author email_address="mbg1346@naver.com" link="https://moonhouse.co.kr">
+		<name xml:lang="ko">문하우스</name>
+	</author>
+
+	<extra_vars>
+		<group>
+			<title xml:lang="ko">PopUp 설정</title>
+			<var id="document_srl">
+				<name xml:lang="ko">대상 문서(필수)</name>
+				<type>text</type>
+				<description xml:lang="ko">문서번호를 입력하면 출력할 수 있습니다. (예: 167)</description>
+			</var>
+			<var id="popup_no">
+				<name xml:lang="ko">팝업 Class명</name>
+				<type>text</type>
+				<description xml:lang="ko">복수 팝업창시 필수적인 순서의 이름(기본 a)</description>
+			</var>
+			<var id="popup_location">
+				<name xml:lang="ko">팝업위치 설정</name>
+				<type>select</type>
+				<description xml:lang="ko">팝업창의 화면내 위치를 지정합니다.</description>
+				<options>
+					<name xml:lang="ko">고정</name>
+					<value>fixed</value>
+				</options>
+				<options>
+					<name xml:lang="ko">이동</name>
+					<value>absolute</value>
+				</options>
+			</var>
+			<var id="display_shadow">
+				<name xml:lang="ko">팝업창 그림자효과</name>
+				<type>select</type>
+				<description xml:lang="ko">팝업창의 그림자효과를 선택하세요.</description>
+				<options>
+					<name xml:lang="ko">없음</name>
+					<value>N</value>
+				</options>
+				<options>
+					<name xml:lang="ko">그림자효과</name>
+					<value>Y</value>
+				</options>
+			</var>
+			<var id="display_round">
+				<name xml:lang="ko">팝업창 형태</name>
+				<type>select</type>
+				<description xml:lang="ko">팝업창의 형태를 선택하세요.</description>
+				<options>
+					<name xml:lang="ko">라운드</name>
+					<value>Y</value>
+				</options>
+				<options>
+					<name xml:lang="ko">직각</name>
+					<value>N</value>
+				</options>
+			</var>
+			<var id="board_top">
+				<name xml:lang="ko">팝업의 TOP위치</name>
+				<type>text</type>
+				<description xml:lang="ko">팝업의 화면 위에서의 위치지정(기본 10% - 숫자만)</description>
+			</var>
+			<var id="board_left">
+				<name xml:lang="ko">팝업의 LEFT위치</name>
+				<type>text</type>
+				<description xml:lang="ko">팝업의 화면 좌측에서의 위치지정(기본 50% - 숫자만)</description>
+			</var>
+			<var id="popup_width">
+				<name xml:lang="ko">팝업의 가로폭</name>
+				<type>text</type>
+				<description xml:lang="ko">
+					팝업의 가로폭을 지정 (기본 460px - 숫자만)
+					배너팝업으로 이미지를 가로 460px로 만드시면 기본에 잘 적용됩니다. 
+				</description>
+			</var>
+			<var id="popup_height">
+				<name xml:lang="ko">팝업의 세로폭</name>
+				<type>text</type>
+				<description xml:lang="ko">
+					팝업의 세로폭을 지정합니다. 내용의 길이가 너무 길 경우 (기본 전체 - 숫자만)
+				</description>
+			</var>
+			<var id="board_line">
+				<name xml:lang="ko">보드 테두리라인 선택</name>
+				<type>select</type>
+				<description xml:lang="ko">보드 테두리라인의 종류를 선택 할 수 있습니다.</description>
+				<options>
+					<name xml:lang="ko">숨김</name>
+					<value>hidden</value>
+				</options>
+				<options>
+					<name xml:lang="ko">실선</name>
+					<value>solid</value>
+				</options>
+				<options>
+					<name xml:lang="ko">이중선</name>
+					<value>double</value>
+				</options>
+				<options>
+					<name xml:lang="ko">점선</name>
+					<value>dotted</value>
+				</options>
+				<options>
+					<name xml:lang="ko">끊어진 라인</name>
+					<value>dashed</value>
+				</options>
+				<options>
+					<name xml:lang="ko">입체 돌출</name>
+					<value>ridge</value>
+				</options>
+				<options>
+					<name xml:lang="ko">내부로 들어간 듯</name>
+					<value>inset</value>
+				</options>
+				<options>
+					<name xml:lang="ko">바깥으로 돌출</name>
+					<value>outset</value>
+				</options>
+				<options>
+					<name xml:lang="ko">홈이 파진 듯</name>
+					<value>groove</value>
+				</options>
+			</var>
+			<var id="board_line_width">
+				<name xml:lang="ko">보드 테두리라인 굵기</name>
+				<type>text</type>
+				<description xml:lang="ko">보드 테두리라인의 굵기를 정하실 수 있습니다. (기본 1px - 숫자만)</description>
+			</var>
+			<var id="aboard_line_color">
+				<name xml:lang="ko">라인 색상</name>
+				<type>text</type>
+				<description xml:lang="ko">보드 라인 색상을 지정합니다.(기본 transparent 예쁨 #ffaa56 )</description>
+			</var>
+			<var id="title_font_color">
+				<name xml:lang="ko">타이틀 폰트 색상</name>
+				<type>color</type>
+				<description xml:lang="ko">보드 타이틀폰트 색상을 지정합니다.(기본 #666)</description>
+			</var>
+			<var id="background_color">
+				<name xml:lang="ko">배경 색상</name>
+				<type>text</type>
+				<description xml:lang="ko">보드내 배경 색상을 지정합니다.(기본 transparent)
+				흰색스킨의 경우 #ffffff, 검정스킨의 경우 #3d3d3d 를 지정하세요,</description>
+			</var>
+			<var id="title">
+				<name xml:lang="ko">타이틀</name>
+				<type>text</type>
+				<description xml:lang="ko">게시물의 타이틀로 출력됩니다.</description>
+			</var>
+			<var id="tclose">
+				<name xml:lang="ko">상단 창닫기 버턴 출력</name>
+				<type>select</type>
+				<description xml:lang="ko">상단 창닫기 버턴 아이콘의 출력을 선택.</description>
+				<options>
+					<name xml:lang="ko">출력</name>
+					<value>Y</value>
+				</options>
+				<options>
+					<name xml:lang="ko">출력 암함</name>
+					<value>N</value>
+				</options>
+			</var>
+			<var id="top_close_t">
+				<name xml:lang="ko">상단 창닫기 아이콘의 상단 위치</name>
+				<type>text</type>
+				<description xml:lang="ko">상단 창닫기 아이콘의 상단 위치를 정하실 수 있습니다. (기본 7px - 숫자만)</description>
+			</var>
+			<var id="top_close_r">
+				<name xml:lang="ko">상단 창닫기 아이콘의 우측 위치</name>
+				<type>text</type>
+				<description xml:lang="ko">상단 창닫기 아이콘의 우측 위치를 정하실 수 있습니다. (기본 10px - 숫자만)</description>
+			</var>
+			<var id="aclose_location">
+				<name xml:lang="ko">하단 창닫기 버턴 설정</name>
+				<type>select</type>
+				<description xml:lang="ko">하단 창닫기 버턴 아이콘의 위치를 지정합니다.</description>
+				<options>
+					<name xml:lang="ko">아래</name>
+					<value>re</value>
+				</options>
+				<options>
+					<name xml:lang="ko">화면내</name>
+					<value>ab</value>
+				</options>
+			</var>
+			<var id="close_b">
+				<name xml:lang="ko">하단 창닫기 영역의 아래 위치</name>
+				<type>text</type>
+				<description xml:lang="ko">하단 창닫기 영역의 아래 위치를 정하실 수 있습니다. (기본 5px - 숫자만)</description>
+			</var>
+			<var id="close_left">
+				<name xml:lang="ko">하단 Close 아이콘의 좌우측 위치</name>
+				<type>text</type>
+				<description xml:lang="ko">하단 Close 아이콘의 좌우측 위치를 정하실 수 있습니다. (기본 10px - 숫자만)</description>
+			</var>
+			<var id="close_bcolor">
+				<name xml:lang="ko">하단 창닫기 창 배경 색상</name>
+				<type>text</type>
+				<description xml:lang="ko">닫기 창 배경 색상을 지정합니다.(기본 #000 투명 transparent)</description>
+			</var>
+			<var id="close_color">
+				<name xml:lang="ko">하단 창닫기 창 문구 and 테두리 색상</name>
+				<type>color</type>
+				<description xml:lang="ko">하단 창닫기 창 문구 and 테두리 색상을 지정합니다.(기본 #fff)</description>
+			</var>
+		</group>
+		<group>
+			<title xml:lang="ko">대상문서 선택시</title>
+			<var id="board_no">
+				<name xml:lang="ko">대상문서 선택</name>
+				<type>select</type>
+				<options>
+					<name xml:lang="ko">대상문서 선택</name>
+					<value></value>
+				</options>
+				<options>
+					<name xml:lang="ko">대상문서 선택 않음</name>
+					<value>N</value>
+				</options>
+			</var>
+			<var id="display_sub">
+				<name xml:lang="ko">제목표시</name>
+				<type>select</type>
+				<description xml:lang="ko">상단에 제목표시</description>
+				<options>
+					<name xml:lang="ko">출력하지 않음</name>
+					<value>N</value>
+				</options>
+				<options>
+					<name xml:lang="ko">출력</name>
+					<value>Y</value>
+				</options>
+			</var>
+			<var id="subject_cut_size">
+				<name xml:lang="ko">제목 글자수</name>
+				<type>text</type>
+				<description xml:lang="ko">제목 글자수를 지정할 수 있습니다. (빈칸이나 0 입력시 자르지 않습니다])</description>
+			</var>
+			<var id="titles_font_color">
+				<name xml:lang="ko">제목 폰트 색상</name>
+				<type>color</type>
+				<description xml:lang="ko">보드 제목폰트 색상을 지정합니다.(기본 #555)</description>
+			</var>
+		</group>
+		<group>
+			<title xml:lang="ko">직접입력 선택시</title>
+			<var id="direct">
+				<name xml:lang="ko">직접 입력</name>
+				<type>select</type>
+				<description xml:lang="ko">직접입력 방식을 선택을 해도 최상단의 문서번호는 입력해야 합니다. (아무 문서번호를 입력해도 됨)</description>
+				<options>
+					<name xml:lang="ko">직접입력 선택 않음</name>
+					<value></value>
+				</options>
+				<options>
+					<name xml:lang="ko">직접입력 선택</name>
+					<value>Y</value>
+				</options>
+			</var>
+			<var id="direct_img">
+				<name xml:lang="ko">이미지</name> 
+				<type>text</type>
+				<description xml:lang="ko">이미지주소를 기재합니다.</description> 
+			</var>
+			<var id="direct_url">
+				<name xml:lang="ko">첫번째 이미지 연결링크</name> 
+				<type>text</type>
+				<description xml:lang="ko">첫번째로 나올 이미지 주소를 설정합니다. 없으면 생략합니다.</description> 
+			</var>
+			<var id="direct_sub">
+				<name xml:lang="ko">내용글</name>
+				<type>textarea</type>
+				<description xml:lang="ko">팝업 안에 내용글(html 사용가능)</description>
+			</var>
+			<var id="direct_sub_color">
+				<name xml:lang="ko">내용글 색상</name>
+				<type>color</type>
+				<description xml:lang="ko">내용글 색상을 지정합니다.(기본 #555)</description>
+			</var>
+		</group>
+		<group>
+			<title xml:lang="ko">팝업창 출력종료(두가지중 선택)</title>
+			<var id="close_y">
+				<name xml:lang="ko">1. 팝업창출력 종료 년도 지정</name>
+				<type>text</type>
+				<description xml:lang="ko">팝업창이 종료 되는 년도를 선택하세요.(예 2020)</description>
+			</var>
+			<var id="close_m">
+				<name xml:lang="ko">　┖ 팝업창출력 종료 월 지정</name>
+				<type>select</type>
+				<description xml:lang="ko">팝업창이 종료 되는 월을 선택하세요</description>
+				<options>
+					<name xml:lang="ko">1월</name>
+					<value>01</value>
+				</options>
+				<options>
+					<name xml:lang="ko">2월</name>
+					<value>02</value>
+				</options>
+				<options>
+					<name xml:lang="ko">3월</name>
+					<value>03</value>
+				</options>
+				<options>
+					<name xml:lang="ko">4월</name>
+					<value>04</value>
+				</options>
+				<options>
+					<name xml:lang="ko">5월</name>
+					<value>05</value>
+				</options>
+				<options>
+					<name xml:lang="ko">6월</name>
+					<value>06</value>
+				</options>
+				<options>
+					<name xml:lang="ko">7월</name>
+					<value>07</value>
+				</options>
+				<options>
+					<name xml:lang="ko">8월</name>
+					<value>08</value>
+				</options>
+				<options>
+					<name xml:lang="ko">9월</name>
+					<value>09</value>
+				</options>
+				<options>
+					<name xml:lang="ko">10월</name>
+					<value>10</value>
+				</options>
+				<options>
+					<name xml:lang="ko">11월</name>
+					<value>11</value>
+				</options>
+				<options>
+					<name xml:lang="ko">12월</name>
+					<value>12</value>
+				</options>
+			</var>
+			<var id="close_day">
+				<name xml:lang="ko">　┖ 팝업창출력 종료 날짜</name>
+				<type>text</type>
+				<description xml:lang="ko">팝업창이 종료 되는 날짜를 기재하세요.빈칸시 팝업 종료 안함</description>
+			</var>
+			<var id="ename">
+				<name xml:lang="ko">2. 팝업창 출력종료 날짜지정 사용자정의 이름</name>
+				<type>text</type>
+				<description xml:lang="ko">게시판의 확장변수를 사용하여 팝업창 출력종료시 확장변수 사용자정의 이름을 기재하세요.(기본 end)</description>
+			</var>
+			<var id="closeday">
+				<name xml:lang="ko">★팝업창 닫는 날 수</name>
+				<type>text</type>
+				<description xml:lang="ko">팝업창이 보이지 않는 날 수(기본 1이 하루입니다.)</description>
+			</var>
+			<var id="popup_day">
+				<name xml:lang="ko">팝업 종료 출력</name>
+				<type>select</type>
+				<description xml:lang="ko">팝업 종료일짜를 출력합니다.</description>
+				<options>
+					<name xml:lang="ko">출력</name>
+					<value></value>
+				</options>
+				<options>
+					<name xml:lang="ko">숨김</name>
+					<value>N</value>
+				</options>
+			</var>
+			<var id="display_popup">
+				<name xml:lang="ko">팝업창 수동 종료</name>
+				<type>select</type>
+				<description xml:lang="ko">팝업창을 나타내고 숨깁니다.</description>
+				<options>
+					<name xml:lang="ko">출력</name>
+					<value></value>
+				</options>
+				<options>
+					<name xml:lang="ko">숨김</name>
+					<value>N</value>
+				</options>
+			</var>
+		</group>
+		<group>
+			<title xml:lang="ko">Group 설정</title>
+			<var id="group_view">
+				<type>select</type>
+				<name xml:lang="ko">Group지정별 표시</name>
+				<description xml:lang="ko">Group을 지정해서 위젯의 노출을 나타냅니다.</description>
+				<options>
+					<value></value>
+					<name xml:lang="ko">Group지정안함(기본)</name>
+				</options>
+				<options>
+					<value>Y</value>
+					<name xml:lang="ko">Group지정사용</name>
+				</options>
+			</var>
+			<var id="group_srls">
+				<type>member_group</type>
+				<name xml:lang="ko">　┖  Group지정사용시 선택한 그룹만 노출</name>
+				<description xml:lang="ko"><![CDATA[선택한 그룹의 사용자에게만 노출 됩니다. (선택하지 않으면 모든 그룹 노출 가능.)]]></description>
+			</var>
+			<var id="point_p">
+				<type>text</type>
+				<name xml:lang="ko">　┖  Group지정안함시 포인트로 노출설정</name>
+				<description xml:lang="ko">Group지정하지 않고 지정한 포인트이상에서만 위젯이 노출됩니다.(기본 0)</description>
+			</var>
+			<var id="level_p">
+				<type>text</type>
+				<name xml:lang="ko">　┖  Group지정안함시 레벨로 노출설정</name>
+				<description xml:lang="ko">Group지정하지 않고 지정한 레벨이상에서만 위젯이 노출됩니다.(기본 0)</description>
+			</var>
+		</group>
+	</extra_vars>
+</widget>

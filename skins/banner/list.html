@@ -48,7 +48,7 @@ $no = $wi->popup_no;
 </script>
 
 <style>
-	#pop-ups{$no} { position:{$wi->popup_location}; margin-left:-{$wi->popup_width/2}px; top:{$wi->board_top}%; left:{$wi->board_left}%; z-index:99 }
+	#pop-ups{$no} { position:{$wi->popup_location}; margin-left:-{$wi->popup_width/2}px; top:{$wi->board_top}%; left:{$wi->board_left}%; z-index:100 }
 	.pop_banners{$no} { position:absolute; overflow:hidden; z-index:99; padding:0px; width:{$wi->popup_width}px; border:{$wi->board_line} {$wi->board_line_width}px {$wi->aboard_line_color}; <!--@if($wi->display_round == 'Y')-->-webkit-border-radius:20px;-moz-border-radius:20px; border-radius:20px<!--@else--><!--@end--><!--@if($wi->display_shadow == 'Y')-->background:transparent; -webkit-box-shadow:0 0 10px #000; box-shadow:0 0 20px #000<!--@else--><!--@end--> }
 	.pop_banners{$no} .ap_box { padding:0px; background-color:{$wi->background_color}; <!--@if($wi->display_round == 'Y')-->-webkit-border-radius:10px;-moz-border-radius:10px; border-radius:10px<!--@else--><!--@end--> }
 	.pop_banners{$no} .ap_box .box_top_title { padding:5px; overflow:hidden; background-color:{$wi->background_color}; border-bottom:1px solid {$wi->aboard_line_color}; cursor:move }
@@ -66,7 +66,7 @@ $no = $wi->popup_no;
 	@media all and (max-width: 479px) {
 	#pop-ups{$no} { position:{$wi->popup_location}; margin-left:-160px; top:1%; left:50%; z-index:99 }
 	.pop_banners{$no} { width:320px; border:{$wi->board_line} {$wi->board_line_width}px {$wi->aboard_line_color} }
-	.pop_banners{$no} .ap_box .content_view { overflow-y:auto; max-height:400px; padding:0px }
+	.pop_banners{$no} .ap_box .content_view { overflow-y:auto; max-height:550px; padding:0px }
 	.pop_banners{$no} .p_table { margin-top:-15px; padding:0; padding:0; cursor:move; z-index:100 }
 	}
 </style>
@@ -74,24 +74,22 @@ $no = $wi->popup_no;
 <div id="pop-ups{$no}">
 	<div class="logo" id="PopUp {$no}">
 		<!--@foreach($wi->document_list as $oDocument)-->
-
 			<!--@if($wi->close_day)-->
-					{@
-						$year = $wi->close_y;
-						$month = $wi->close_m;
-						$day = $wi->close_day;
-						$now = date("Y.m.d");
-						$this_day = date_create("$year-$month-$day");
-						$date = $this_day->format("Y.m.d")
-					}
-				<!--@else-->
-					{@
-						if(!$wi->ename) $wi->ename = end;
-						$now = date("Y-m-d");
-						$date = $oDocument->getExtraEidValueHTML($wi->ename);
-					}
+				{@
+					$year = $wi->close_y;
+					$month = $wi->close_m;
+					$day = $wi->close_day;
+					$now = date("Y.m.d");
+					$this_day = date_create("$year-$month-$day");
+					$date = $this_day->format("Y.m.d")
+				}
+			<!--@else-->
+				{@
+					if(!$wi->ename) $wi->ename = 'end';
+					$now = date("Y-m-d");
+					$date = $oDocument->getExtraEidValueHTML($wi->ename);
+				}
 			<!--@end-->
-
 			<!--@if($wi->display_popup == '')-->
 				<!--@if($wi->group_view == 'Y')-->
 						<!-- 그룹적용 -->
@@ -118,7 +116,6 @@ $no = $wi->popup_no;
 						<!--@end-->
 				<!--@end-->
 			<!--@end-->
-
 		<!--@end-->
 	</div>
 </div>

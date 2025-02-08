@@ -4,10 +4,10 @@
 	<description xml:lang="ko">
 		지정한 게시물을 팝업창 출력하는 위젯입니다.
 	</description>
-	<version>1.4</version>
-	<date>2022-04-19</date>
+	<version>1.5</version>
+	<date>2024-03-29</date>
 
-	<author email_address="mbg1346@naver.com" link="https://moonhouse.co.kr">
+	<author email_address="80san@moonhouse.co.kr" link="https://moonhouse.co.kr">
 		<name xml:lang="ko">문하우스</name>
 	</author>
 

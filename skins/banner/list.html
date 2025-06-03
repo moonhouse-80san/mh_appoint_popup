@@ -120,3 +120,11 @@ $no = $wi->popup_no;
 	</div>
 </div>
 
+<!-- 자동 닫기 스크립트 -->
+<script cond="$wi->popup_close == ''">
+	var autoCloseSeconds = {$wi->popup_time};
+	setTimeout(function() {
+		xHide('PopUp {$no}');
+	}, autoCloseSeconds * 1000);
+</script>
+

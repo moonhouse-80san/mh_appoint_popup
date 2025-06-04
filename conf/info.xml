@@ -4,8 +4,8 @@
 	<description xml:lang="ko">
 		지정한 게시물을 팝업창 출력하는 위젯입니다.
 	</description>
-	<version>1.5</version>
-	<date>2024-03-29</date>
+	<version>1.6</version>
+	<date>2025-06-03</date>
 
 	<author email_address="80san@moonhouse.co.kr" link="https://moonhouse.co.kr">
 		<name xml:lang="ko">문하우스</name>
@@ -391,9 +391,9 @@
 				</options>
 			</var>
 			<var id="popup_close">
-				<name xml:lang="ko">★팝업창 자동 시간 종료</name>
+				<name xml:lang="ko">★팝업창 자동 Time 종료</name>
 				<type>select</type>
-				<description xml:lang="ko">출력된 팝업창을 시간 경과시 자동 종료</description>
+				<description xml:lang="ko">출력된 팝업창을 Time 경과시 자동 종료</description>
 				<options>
 					<name xml:lang="ko">자동종료</name>
 					<value></value>

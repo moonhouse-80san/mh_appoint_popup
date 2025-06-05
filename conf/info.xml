@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <widget version="0.2">
-	<title xml:lang="ko">MH Appoint Popup Pro</title>
+	<title xml:lang="ko">MH Appoint Popup</title>
 	<description xml:lang="ko">
 		지정한 게시물을 팝업창 출력하는 위젯입니다.
 	</description>
